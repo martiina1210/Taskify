@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskify</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Taskify</h1>
+    <input type="text" id="searchBar" placeholder="Search tasks...">
+  </header>
+  
+  <main>
+    <section id="task-form">
+      <input type="text" id="task-title" placeholder="Task Title" required>
+      <textarea id="task-details" placeholder="Task Details"></textarea>
+      <input type="date" id="task-due-date">
+      <select id="task-priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <button id="add-task-btn">Add Task</button>
+    </section>
+    
+    <section id="task-list">
+      <h2>Tasks</h2>
+      <ul id="tasks-container"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
