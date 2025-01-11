@@ -2,14 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const tasksContainer = document.getElementById('tasks-container');
   const addTaskBtn = document.getElementById('add-task-btn');
 
+  // Set your backend URL
+  const BASE_URL = 'https://taskify-backend-1j1r.onrender.com';
+
   // Fetch and display tasks
   async function fetchTasks() {
     try {
-      const response = await fetch('/tasks');
+      const response = await fetch(`${BASE_URL}/tasks`);
       const tasks = await response.json();
       displayTasks(tasks);
     } catch (error) {
       console.error('Error fetching tasks:', error);
+      alert('Failed to fetch tasks. Please check your backend connection.');
     }
   }
 
@@ -46,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      await fetch('/tasks', {
+      await fetch(`${BASE_URL}/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, details, due_date: dueDate, priority })
@@ -54,31 +58,34 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchTasks();
     } catch (error) {
       console.error('Error adding task:', error);
+      alert('Failed to add task. Please try again.');
     }
   });
 
   // Toggle task status
   window.toggleStatus = async (id, currentStatus) => {
     try {
-      await fetch(`/tasks/${id}/status`, {
+      await fetch(`${BASE_URL}/tasks/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' }
       });
       fetchTasks();
     } catch (error) {
       console.error('Error toggling status:', error);
+      alert('Failed to toggle task status. Please try again.');
     }
   };
 
   // Delete a task
   window.deleteTask = async (id) => {
     try {
-      await fetch(`/tasks/${id}`, {
+      await fetch(`${BASE_URL}/tasks/${id}`, {
         method: 'DELETE'
       });
       fetchTasks();
     } catch (error) {
       console.error('Error deleting task:', error);
+      alert('Failed to delete task. Please try again.');
     }
   };
 
