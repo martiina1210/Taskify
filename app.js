@@ -1,11 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const homeLink = document.getElementById('home-link');
+  const tasksLink = document.getElementById('tasks-link');
+  const homepageSection = document.getElementById('homepage');
+  const taskPageSection = document.getElementById('task-page');
+
+  // Show Homepage
+  homeLink.addEventListener('click', () => {
+    homepageSection.classList.remove('hidden');
+    taskPageSection.classList.add('hidden');
+  });
+
+  // Show Task Page
+  tasksLink.addEventListener('click', () => {
+    homepageSection.classList.add('hidden');
+    taskPageSection.classList.remove('hidden');
+  });
+
+  // Your existing task management code
   const tasksContainer = document.getElementById('tasks-container');
   const addTaskBtn = document.getElementById('add-task-btn');
-
-  // Set your backend URL
   const BASE_URL = 'https://taskify-backend-1j1r.onrender.com';
 
-  // Fetch and display tasks
   async function fetchTasks() {
     try {
       const response = await fetch(`${BASE_URL}/tasks`);
@@ -13,36 +28,48 @@ document.addEventListener('DOMContentLoaded', () => {
       displayTasks(tasks);
     } catch (error) {
       console.error('Error fetching tasks:', error);
-      alert('Failed to fetch tasks. Please check your backend connection.');
     }
   }
 
-  // Display tasks in the list
   function displayTasks(tasks) {
     tasksContainer.innerHTML = '';
     tasks.forEach(task => {
       const taskItem = document.createElement('li');
       taskItem.classList.add('task-item');
-      if (task.status === 'completed') {
-        taskItem.classList.add('completed');
-      }
       taskItem.innerHTML = `
-        <span>${task.title}</span>
-        <div>
-          <button onclick="toggleStatus(${task.id}, '${task.status}')">${task.status === 'pending' ? 'Mark Complete' : 'Mark Pending'}</button>
-          <button onclick="deleteTask(${task.id})">Delete</button>
-        </div>
+        <strong>${task.title}</strong>
+        <p>${task.details}</p>
+        <small>Due: ${task.due_date}</small>
+        <button class="delete-btn" data-task-id="${task.id}"> Delete </button> 
       `;
+      const deleteBtn = taskItem.querySelector('.delete-btn');
+      deleteBtn.addEventListener('click', () => deleteTask(task.id)); 
       tasksContainer.appendChild(taskItem);
     });
   }
+  
+  async function deleteTask(taskId) {
+    try {
+      const response = await fetch(`${BASE_URL}/tasks/${taskId}`, {
+        method: 'DELETE',  // Koristimo DELETE metodu
+      });
 
-  // Add a new task
+      if (response.ok) {
+        console.log(`Task with ID: ${taskId} deleted`);
+        fetchTasks();  // Ponovno dohvatiti zadatke i ažurirati prikaz
+      } else {
+        console.error(`Failed to delete task with ID: ${taskId}`);
+      }
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
+  }
+
   addTaskBtn.addEventListener('click', async () => {
     const title = document.getElementById('task-title').value;
     const details = document.getElementById('task-details').value;
     const dueDate = document.getElementById('task-due-date').value;
-    const priority = document.getElementById('task-priority').value;
+    
 
     if (!title) {
       alert('Task title is required!');
@@ -53,42 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
       await fetch(`${BASE_URL}/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, details, due_date: dueDate, priority })
+        body: JSON.stringify({ title, details, due_date: dueDate})
       });
       fetchTasks();
     } catch (error) {
       console.error('Error adding task:', error);
-      alert('Failed to add task. Please try again.');
     }
   });
 
-  // Toggle task status
-  window.toggleStatus = async (id, currentStatus) => {
-    try {
-      await fetch(`${BASE_URL}/tasks/${id}/status`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' }
-      });
-      fetchTasks();
-    } catch (error) {
-      console.error('Error toggling status:', error);
-      alert('Failed to toggle task status. Please try again.');
-    }
-  };
-
-  // Delete a task
-  window.deleteTask = async (id) => {
-    try {
-      await fetch(`${BASE_URL}/tasks/${id}`, {
-        method: 'DELETE'
-      });
-      fetchTasks();
-    } catch (error) {
-      console.error('Error deleting task:', error);
-      alert('Failed to delete task. Please try again.');
-    }
-  };
-
-  // Initial fetch
   fetchTasks();
 });
