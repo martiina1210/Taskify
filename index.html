@@ -7,38 +7,104 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Header Section -->
   <header>
-    <h1 class = "main-title">Welcome to Taskify</h1>
+    <h1 class="main-title">Welcome to Taskify</h1>
     <nav>
-      <ul class = "navigation-bar">
-        <li><a href = "#" id = "home-link">Homepage</a></li>
-        <li><a href = "#" id = "tasks-link">Taskpage</a></li>
+      <ul class="navigation-bar">
+        <li><a href="#" id="home-link">Homepage</a></li>
+        <li><a href="#" id="tasks-link">Taskpage</a></li>
       </ul>
     </nav>
   </header>
-  
+
+  <!-- Main Content -->
   <main>
-    <section id = "homepage" class = "page">
+    <!-- Homepage Section -->
+    <section id="homepage" class="page">
       <h1>Welcome to Taskify!</h1>
       <p>Taskify helps you manage your tasks and stay organized!</p>
+
+      <!-- Why Taskify Section -->
+      <section id="why-taskify">
+        <h2>Why Use Taskify?</h2>
+        <ul>
+          <li>Organize your tasks in a simple and effective way.</li>
+          <li>Track your deadlines and stay productive.</li>
+          <li>User-friendly interface for everyone.</li>
+          <li>Customizable to fit your needs.</li>
+        </ul>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features">
+        <h2>Features of Taskify</h2>
+        <div class="feature-list">
+          <div class="feature">
+            <h3>Add Tasks</h3>
+            <p>Quickly add tasks with details and deadlines to stay organized.</p>
+          </div>
+          <div class="feature">
+            <h3>Track Progress</h3>
+            <p>Mark tasks as completed and monitor your productivity.</p>
+          </div>
+          <div class="feature">
+            <h3>Easy to Use</h3>
+            <p>Simple and intuitive design for all types of users.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Icons Section -->
+      <section id="icons-section">
+        <h2>Key Features</h2>
+        <div class="icon-list">
+          <div class="icon-item">
+            <img src="images/tasks-icon-9.png" alt="Add Tasks Icon">
+            <h3>Add Tasks</h3>
+            <p>Quickly create tasks with deadlines.</p>
+          </div>
+          <div class="icon-item">
+            <img src="images/OIP.jpg" alt="Track Progress Icon">
+            <h3>Track Progress</h3>
+            <p>Monitor your tasks and stay productive.</p>
+          </div>
+          <div class="icon-item">
+            <img src="images/dashboard.jpg" alt="Dashboard Icon">
+            <h3>Simple Dashboard</h3>
+            <p>Enjoy an intuitive and user-friendly design.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slider Section -->
+      <section id="slider">
+        <h2>Stay Motivated</h2>
+        <div class="slider-container">
+          <div class="slide">"A productive day starts with Taskify!"</div>
+          <div class="slide">"Organize your life, one task at a time."</div>
+          <div class="slide">"Taskify makes productivity simple."</div>
+        </div>
+      </section>
     </section>
 
-
-    <section id="task-page" class = "page hidden">
+    <!-- Taskpage Section -->
+    <section id="task-page" class="page hidden">
       <div id="task-form">
-      <input type="text" id="task-title" placeholder="Task Title" required>
-      <input type="text" id="task-details" placeholder="Task Details" required>
-      <input type="date" id="task-due-date">
-      <button id="add-task-btn">Add Task</button>
-    </div>
-    
-    <section id="task-list">
-      <h2>Tasks</h2>
-      <ul id="tasks-container"></ul>
+        <input type="text" id="task-title" placeholder="Task Title" required>
+        <input type="text" id="task-details" placeholder="Task Details" required>
+        <input type="date" id="task-due-date">
+        <button id="add-task-btn">Add Task</button>
+      </div>
+
+      <section id="task-list">
+        <h2>Tasks</h2>
+        <ul id="tasks-container"></ul>
+      </section>
     </section>
-  </section>
   </main>
 
+  <!-- JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
