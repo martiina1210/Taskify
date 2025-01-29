@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header Section -->
+ 
   <header>
     <h1 class="main-title">Welcome to Taskify</h1>
     <nav>
@@ -15,38 +15,44 @@
         <li><a href="#" id="home-link">Homepage</a></li>
         <li><a href="#" id="tasks-link">Taskpage</a></li>
       </ul>
+      <button id="theme-toggle">Switch Theme</button>
     </nav>
   </header>
 
-  <!-- Main Content -->
+  
   <main>
-    <!-- Homepage Section -->
+    
     <section id="homepage" class="page">
       <h1>Welcome to Taskify!</h1>
       <p>Taskify helps you manage your tasks and stay organized!</p>
 
-      <!-- Why Taskify Section -->
+     
       <section id="why-taskify">
-        <h2>Why Use Taskify?</h2>
-        <ul>
-          <li>Organize your tasks in a simple and effective way.</li>
-          <li>Track your deadlines and stay productive.</li>
-          <li>User-friendly interface for everyone.</li>
-          <li>Customizable to fit your needs.</li>
-        </ul>
-      </section>
+    <h2>Why Use Taskify?</h2>
+    <p class="float-left">
+        Taskify helps you stay productive by organizing your tasks efficiently. 
+        Manage your workflow with ease and never miss important deadlines.
+    </p>
+    <ul class="float-right">
+        <li>Organize your tasks in a simple and effective way.</li>
+        <li>Track your deadlines and stay productive.</li>
+        <li>User-friendly interface for everyone.</li>
+        <li>Customizable to fit your needs.</li>
+    </ul>
+    <div class="clearfix"></div> 
+</section>
 
-      <!-- Features Section -->
+      
       <section id="features">
         <h2>Features of Taskify</h2>
         <div class="feature-list">
           <div class="feature">
             <h3>Add Tasks</h3>
-            <p>Quickly add tasks with details and deadlines to stay organized.</p>
+            <p>Quickly add tasks with details and deadlines to stay organized!</p>
           </div>
           <div class="feature">
-            <h3>Track Progress</h3>
-            <p>Mark tasks as completed and monitor your productivity.</p>
+            <h3>Delete Tasks</h3>
+            <p>Remove tasks you have finished!</p>
           </div>
           <div class="feature">
             <h3>Easy to Use</h3>
@@ -55,7 +61,7 @@
         </div>
       </section>
 
-      <!-- Icons Section -->
+      
       <section id="icons-section">
         <h2>Key Features</h2>
         <div class="icon-list">
@@ -77,7 +83,7 @@
         </div>
       </section>
 
-      <!-- Slider Section -->
+      
       <section id="slider">
         <h2>Stay Motivated</h2>
         <div class="slider-container">
@@ -86,9 +92,57 @@
           <div class="slide">"Taskify makes productivity simple."</div>
         </div>
       </section>
+      <section class="flip-card-section">
+    <h2>Discover More</h2>
+    <div class="flip-card-container">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h3>Task Management</h3>
+                </div>
+                <div class="flip-card-back">
+                    <p>Efficiently manage your tasks and boost productivity!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h3>Smart Reminders</h3>
+                </div>
+                <div class="flip-card-back">
+                    <p>Always remind yourself of tasks you have to do!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h3>Stay organized</h3>
+                </div>
+                <div class="flip-card-back">
+                    <p>You can easily add and remove tasks!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h3>Custom Themes</h3>
+                </div>
+                <div class="flip-card-back">
+                    <p>Personalize your experience with blue and red theme!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     </section>
 
-    <!-- Taskpage Section -->
+    
     <section id="task-page" class="page hidden">
       <div id="task-form">
         <input type="text" id="task-title" placeholder="Task Title" required>
@@ -102,9 +156,9 @@
         <ul id="tasks-container"></ul>
       </section>
     </section>
+    
   </main>
 
-  <!-- JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
