@@ -90,3 +90,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchTasks();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    
+    if (localStorage.getItem("theme") === "red") {
+        body.classList.add("red-mode");
+        themeToggle.textContent = "Switch to Blue Theme";
+    }
+
+    themeToggle.addEventListener("click", () => {
+        body.classList.toggle("red-mode");
+
+        
+        if (body.classList.contains("red-mode")) {
+            localStorage.setItem("theme", "red");
+            themeToggle.textContent = "Switch to Blue Theme";
+        } else {
+            localStorage.setItem("theme", "blue");
+            themeToggle.textContent = "Switch to Red Theme";
+        }
+    });
+});
+
